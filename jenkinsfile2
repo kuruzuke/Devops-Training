@@ -4,7 +4,6 @@ pipeline {
     environment{
             // define environment variables here
             MY_ENV_VAR = 'main'
-            GIT_REPO_URL = 'https://github.com/kuruzuke/Devops-Training.git'
     }
 
     stages {
@@ -14,7 +13,7 @@ pipeline {
                  checkout([
                     $class: 'GitSCM',
                     branches: [[name: '*/main']],
-                    userRemoteConfigs: [[url: "$GIT_REPO_URL"]],
+                    userRemoteConfigs: [[url: 'https://github.com/kuruzuke/Devops-Training.git']],
                     extensions: [
                         [$class: 'CleanBeforeCheckout'], 
                         [$class: 'CloneOption', noTags: false, shallow: true, depth: 1]]
