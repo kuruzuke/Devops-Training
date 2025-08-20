@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    environment{
+            // define environment variables here
+            MY_ENV_VAR = 'main'
+            GIT_REPO_URL = 'https://github.com/kuruzuke/Devops-Training.git'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                 // your checkout logic
+                 checkout([$class : 'GitSCM',
+                    branches: [[name:'*/main']],
+                    userRemoteConfigs: [[$GIT_REPO_URL]],
+                    extensions: [[$class: 'CleanBeforeCheckout'], [$class: 'CloneOption', noTags: false, shallow: true, depth: 1]]
+                 ])
+	
+             }
+          }
+      stage('Build') {
+           steps {
+              sh '''
+                ls
+              echo "In Build Step"
+            '''
+    }
+  }
+  stage('Test') {
+    steps {
+      sh 'echo "In Test Step"'
+    }
+  }
+  stage('Deploy') {
+    steps {
+      sh 'echo "Value of the ENV Variable is ${MY_ENV_VAR}"'
+    }
+  }
+}
+
+
+    post {
+        success {
+             // Actions to perform when the pipeline succeeds
+             echo 'Pipeline succeeded!'
+        }
+        Failure {
+            // Actions to perform when the pipeline fails
+            echo 'Pipeline failed!'
+        }
+    }
+}
