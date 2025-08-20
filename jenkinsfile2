@@ -11,10 +11,13 @@ pipeline {
         stage('Checkout') {
             steps {
                  // your checkout logic
-                 checkout([$class : 'GitSCM',
+                 checkout([
+                    $class : 'GitSCM',
                     branches: [[name:'*/main']],
-                    userRemoteConfigs: [[$GIT_REPO_URL]],
-                    extensions: [[$class: 'CleanBeforeCheckout'], [$class: 'CloneOption', noTags: false, shallow: true, depth: 1]]
+                    userRemoteConfigs: [[url: "{$GIT_REPO_URL}"]],
+                    extensions: [
+                        [$class: 'CleanBeforeCheckout'], 
+                        [$class: 'CloneOption', noTags: false, shallow: true, depth: 1]]
                  ])
 	
              }
