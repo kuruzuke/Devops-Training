@@ -12,8 +12,8 @@ pipeline {
             steps {
                  // your checkout logic
                  checkout([
-                    $class : 'GitSCM',
-                    branches: [[name:'*/main']],
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
                     userRemoteConfigs: [[url: "{$GIT_REPO_URL}"]],
                     extensions: [
                         [$class: 'CleanBeforeCheckout'], 
