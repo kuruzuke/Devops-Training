@@ -4,17 +4,17 @@ pipeline {
     environment{
             // define environment variables here
             MY_ENV_VAR = 'main'
+            GIT_REPO_URL = 'https://github.com/kuruzuke/Devops-Training.git'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 //clone the Git repository's master branch
-                def gitRepoUrl = 'https://github.com/kuruzuke/Devops-Training.git'
-
+                
                 checkout([$class : 'GitSCM',
                     branches: [[name:'*/main']],
-                    userRemoteConfigs: [[url: gitRepoUrl]],
+                    userRemoteConfigs: [[$GIT_REPO_URL]],
                     extensions: [[$class: 'CleanBeforeCheckout'], [$class: 'CloneOption', noTags: false, shallow: true, depth: 1]]
                 ])
             }
