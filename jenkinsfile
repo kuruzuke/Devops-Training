@@ -3,7 +3,7 @@ pipeline {
 
     environment{
             // define environment variables here
-            MY_ENV_VAR = 'Testing Variable'
+            MY_ENV_VAR = 'main'
     }
 
     stages {
