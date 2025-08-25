@@ -2,11 +2,9 @@ pipeline {
     agent any 
     environment {
         RELEASE='20.04'
+        LOG_LEVEL='INFO'
     }
     stages {
-        environment {
-            LOG_LEVEL='INFO'
-        }
         parallel {
             stage('linux-arm64') {
                 agent any
