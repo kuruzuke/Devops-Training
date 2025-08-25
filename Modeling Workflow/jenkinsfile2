@@ -19,12 +19,12 @@ pipeline {
                     echo "Building release ${RELEASE} for ${STAGE_NAME} with log level ${LOG_LEVEL}.."
                 }
             }
-            stage('windows-amd64') {
-                agent any
-                steps {
-                    echo "Building release ${RELEASE} for ${STAGE_NAME} with log level ${LOG_LVEL}..."
-                }
-            }
+            //stage('windows-amd64') {
+            //    agent any
+            //    steps {
+            //        echo "Building release ${RELEASE} for ${STAGE_NAME} with log level ${LOG_LVEL}..."
+            //    }
+            //}
         }
     }
     stage('Test') {
