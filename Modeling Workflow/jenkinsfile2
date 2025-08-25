@@ -5,6 +5,7 @@ pipeline {
         LOG_LEVEL='INFO'
     }
     stages {
+        stage('Build'){
         parallel {
             stage('linux-arm64') {
                 agent any
@@ -49,3 +50,4 @@ pipeline {
             }
         }
     }
+}
